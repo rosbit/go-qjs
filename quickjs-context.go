@@ -90,7 +90,6 @@ func (js *QuickJS) checkFuncName(funcName string) (err error) {
 	if len(funcName) == 0 {
 		return fmt.Errorf("funcName expected")
 	}
-	js.e.Send(fmt.Sprintf("%s\n", funcName))
 
 	_, e := js.GetGlobal(funcName)
 	if e == nil {
@@ -132,7 +131,7 @@ func (js *QuickJS) GetGlobal(varName string) (val interface{}, err error) {
 			}},
 			&expect.Case{Exp: blankRE, SkipTill: '\n'},
 			&expect.Case{Exp: resultRE, ExpMatched: func(m []byte) expect.Action{
-				fmt.Printf("resultRE matched in GetGlobal(): >>>%s<<<\n", m)
+				// fmt.Printf("resultRE matched in GetGlobal(): >>>%s<<<\n", m)
 				if bytes.HasPrefix(m, functionId) {
 					err = fmt.Errorf("%s", m)
 					return expect.Continue
@@ -192,11 +191,9 @@ func (js *QuickJS) BindFunc(funcName string, funcVarPtr interface{}) (err error)
 		return
 	}
 
-	/*
 	if err = js.checkFuncName(funcName); err != nil {
 		return
 	}
-	fmt.Printf("checkFuncName ok\n")
-	*/
+	// fmt.Printf("checkFuncName ok\n")
 	return js.bindFunc(funcName, funcVarPtr)
 }
