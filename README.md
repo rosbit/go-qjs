@@ -1,4 +1,4 @@
-# go-qjs, make quickjs be embedded easily
+# go-qjs, makes QuickJS be embedded easily
 
 [QuickJS](https://bellard.org/quickjs/) is a small and embeddable Javascript engine written by [Fabrice Bellard](https://bellard.org).
 
